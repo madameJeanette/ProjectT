@@ -1,0 +1,26 @@
+{
+  "name": "projectt",
+  "version": "1.0.0",
+  "description": "Web api collection w Tarantula's",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello world"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madameJeanette/ProjectT.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Daniëlle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madameJeanette/ProjectT/issues"
+  },
+  "homepage": "https://github.com/madameJeanette/ProjectT#readme",
+  "dependencies": {
+    "mongodb": "^3.1.10"
+  },
+  "devDependencies": {}
+}
