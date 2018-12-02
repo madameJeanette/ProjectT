@@ -27,7 +27,7 @@ var routes = function(Tarantula){
          res.json(tarantulas);
     }); 
  });
- ttRouter.route.use('/:tarantulaId', function(req,res,next){
+    ttRouter.use('/:tarantulaId', function(req,res,next){
       
     Tarantula.findById(req.params.tarantulaId, function(err,tarantula){
 
@@ -58,12 +58,34 @@ var routes = function(Tarantula){
            req.tarantula.latinName= req.body.latinName;
             req.tarantula.habitat= req.body.habitat;
             req.tarantula.collected= req.body.collected;
-            req.tarantula.save();
-            res.json(req.tarantula);
-        }); 
+            req.tarantula.save(function(err){
+                if(err) 
+                  res.status(500).send(err);
+                  else{
+                     res.json(req.tarantula); 
+                  }
+            });
+
+})
+.patch(function(req,res){
+    if(req.body._id)
+    delete req.body._id;
+    for(var p in req.body)
+    {
+       req.tarantula[p] = req.body[p];
+    }
+    req.tarantula.save(function(err){
+       if(err) 
+         res.status(500).send(err);
+         else{
+            res.json(req.tarantula); 
+         }
+    });
+});
 
  return ttRouter;
 
 };
+
  module.exports = routes;
 
