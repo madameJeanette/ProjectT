@@ -14,10 +14,9 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-ttRouter = require('./Routes/tarantulaRoutes')(Tarantula);
+ttRouter = require('./Routes/ttRoutes')(Tarantula);
 
-app.use('/api', ttRouter);
- 
+app.use('/api/tarantulas', ttRouter);
 
 app.get('/', function(req, res){
   res.send('welcome to my API');
