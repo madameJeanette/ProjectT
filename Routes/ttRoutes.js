@@ -81,6 +81,15 @@ var routes = function(Tarantula){
             res.json(req.tarantula); 
          }
     });
+})
+.delete(function(req,res){
+  req.tarantula.remove(function(err){
+      if (err)
+      res.status(500).send(err);
+      else{
+        res.status(204).send('Removed');  
+      }
+  });
 });
 
  return ttRouter;
