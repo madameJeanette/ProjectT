@@ -10,27 +10,11 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-var ttRouter = express.Router();
-
-ttRouter.route('/Tarantulas')
- .post(function (req,res) {
-   var tarantula = new Tarantula(req.body);
-
-   tarantula.save();
-   res.status(201).send(tarantula);
-     
- })
- .get(function (req,res) {
-    Tarantula.find(function(err,tarantulas){
-        if(err)
-          res.status(500).send(err);
-        else 
-         res.json(tarantulas);
-    }); 
- });
+ttRouter = require('./Routes/tarantulaRoutes')(Tarantula);
 
 app.use('/api', ttRouter);
  
