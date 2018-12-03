@@ -55,7 +55,7 @@ var routes = function(Tarantula){
 
 .put(function(req,res){
            req.tarantula.name= req.body.name;
-           req.tarantula.latinName= req.body.latinName;
+            req.tarantula.latinName= req.body.latinName;
             req.tarantula.habitat= req.body.habitat;
             req.tarantula.collected= req.body.collected;
             req.tarantula.save(function(err){
