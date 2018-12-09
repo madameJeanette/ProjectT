@@ -7,9 +7,9 @@ var routes = function(Tarantula){
     ttRouter.route('/')
     .post(ttController.post)
     .get(ttController.get);
+    
     ttRouter.use('/:tarantulaId', function(req,res,next){
-      
-    tarantula.findById(req.params.tarantulaId, function(err,tarantula){
+      tarantula.findById(req.params.tarantulaId, function(err,tarantula){
 
         if(err)
           res.status(500).send(err);

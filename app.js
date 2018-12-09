@@ -8,7 +8,8 @@ db = mongoose.connect('mongodb://localhost/tarantulaAPI_test');
 
 else{
 
-  db = mongoose.connect('mongodb://localhost/tarantulaAPI');
+db = mongoose.connect('mongodb://localhost/tarantulaAPI');
+
 }
 
 var Tarantula = require('./models/tarantulaModel');
