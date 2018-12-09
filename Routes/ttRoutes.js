@@ -3,33 +3,13 @@ var express = require('express');
 var routes = function(Tarantula){
     var ttRouter = express.Router();
    
+    var ttController = require('../Controllers/ttController.js')(Tarantula)
     ttRouter.route('/')
-     .post(function (req,res) {
-        var tarantula = new Tarantula(req.body);
-
-        tarantula.save();
-        res.status(201).send(tarantula);
-    })
-    .get(function (req,res) {
-      
-        var query = {};
-
-        if(req.query.habitat)
-        {
-            query.habitat = req.query.habitat;
-        }
-
-       Tarantula.find(query, function(err,tarantulas){
-
-        if(err)
-          res.status(500).send(err);
-        else 
-         res.json(tarantulas);
-    }); 
- });
+    .post(ttController.post)
+    .get(ttController.get);
     ttRouter.use('/:tarantulaId', function(req,res,next){
       
-    Tarantula.findById(req.params.tarantulaId, function(err,tarantula){
+    tarantula.findById(req.params.tarantulaId, function(err,tarantula){
 
         if(err)
           res.status(500).send(err);
