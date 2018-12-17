@@ -4,7 +4,7 @@ var express = require('express'),
 
 var db;
 if(process.env.ENV == 'Test')
-db = mongoose.connect('mongodb://localhost/tarantulaAPI_test');
+db = mongoose.connect('mongodb://localhost/tarantulaAPI');
 
 else{
 
@@ -16,7 +16,7 @@ var Tarantula = require('./models/tarantulaModel');
 
 var app = express();
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
 app.options("/api/tarantulas", function(req, res, next){
   res.header('Access-Control-Allow-Origin', null);
@@ -33,7 +33,7 @@ ttRouter = require('./Routes/ttRoutes')(Tarantula);
 
 app.use('/api/tarantulas', ttRouter);
 
-app.get('/', function(req, res, next) {
+app.get('/api', function(req, res, next) {
   res.send('welcome to my API');
   // Handle the get for this route
 });

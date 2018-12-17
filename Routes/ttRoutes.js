@@ -9,7 +9,7 @@ var routes = function(Tarantula){
     .get(ttController.get);
     
     ttRouter.use('/:tarantulaId', function(req,res,next){
-      tarantula.findById(req.params.tarantulaId, function(err,tarantula){
+      Tarantula.findById(req.params.tarantulaId, function(err,tarantula){
 
         if(err)
           res.status(500).send(err);
@@ -29,7 +29,12 @@ var routes = function(Tarantula){
  ttRouter.route('/:tarantulaId')
   .get(function (req,res) {
     
-  res.json(req.tarantula);
+  var returnTarantula = req.tarantula.toJSON();
+  
+  returnTarantula.links = {};
+  var newLink =  "http://" + req.headers.host + "/api/tarantulas/?habitat=" + returnTarantula.habitat; 
+  returnTarantula.links.FilterByThisHabitat = newLink.replace(' ','%20');
+  res.json(req.returnTarantula);
 
 })
 

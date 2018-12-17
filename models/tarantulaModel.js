@@ -6,10 +6,9 @@ var tarantulaModel = new Schema({
    name: {type: String, required: true},
    latinName: {type: String, required: true},
    habitat:{type: String, required: true},
-   collected: {type: Boolean, default:false},
-   _links:{self:{href:{type:String, required: true}}, collection:{href:{type:String, required: true}}}
-   }, {collection: 'items'}
+   collected: {type: Boolean, default:false}
   
+}
 );
 
 module.exports= mongoose.model('Tarantula', tarantulaModel);
