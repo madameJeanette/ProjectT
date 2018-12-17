@@ -7,6 +7,8 @@ var ttController = function(Tarantula) {
       res.status(400);
       res.send("Name is required");
     } else {
+      console.log(tarantula)
+      tarantula._links.self.href = "http://cmgtdani.tk/api/tarantulas/" + tarantula._id
       tarantula.save();
       res.status(201);
       res.send(tarantula);
@@ -26,16 +28,8 @@ var ttController = function(Tarantula) {
       console.log('show collection');
       if (err) res.status(500).send(err)
       else {
-       tarantulas.forEach(function(element, index, array) {
-        console.log('add taruntala');
-        var newTarantula = element.toJSON();
-        newTarantula.links = {};
-        newTarantula.links.self =
-        "http://" + req.headers.host + "/api/tarantulas/" + newTarantula._id;
-        returnTarantulas.push(newTarantula);
-       });
        var items = {
-        items: returnTarantulas,
+        items: tarantulass,
         _links:{self:{href:"http://cmgtdani.tk/api/tarantulas/"}
       },
       pagination: {
@@ -45,19 +39,19 @@ var ttController = function(Tarantula) {
         _links: {    
           first: {
           page: 1,
-          href: "http://amycmgt.tk/projects/?start=1&limit=0"
+          href: "http://cmgtdani.tk/tarantulaAPI/?start=1&limit=0"
       },
       last: {
           "page": null,
-          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+          "href": "http://cmgtdani.tk/tarantulaAPI/?start=NaN&limit=NaN"
       },
       "previous": {
           "page": 10000,
-          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+          "href": "http://cmgtdani.tk/tarantulaAPI/?start=NaN&limit=NaN"
       },
       "next": {
           "page": null,
-          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+          "href": "http://cmgtdani.tk/tarantulaAPI/?start=NaN&limit=NaN"
       }}
 
       }};

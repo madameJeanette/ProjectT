@@ -29,7 +29,7 @@ var routes = function(Tarantula){
  ttRouter.route('/:tarantulaId')
   .get(function (req,res) {
     
-
+    
   res.json(req.tarantula);
 
 })
