@@ -29,7 +29,7 @@ var ttController = function(Tarantula) {
       if (err) res.status(500).send(err)
       else {
        var items = {
-        items: tarantulass,
+        items: tarantulas,
         _links:{self:{href:"http://cmgtdani.tk/api/tarantulas/"}
       },
       pagination: {
