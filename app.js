@@ -26,6 +26,13 @@ app.options("/api/tarantulas", function(req, res, next){
   res.send(200);
 });
 
+app.options("/api/tarantulas/:tarantulaId", function(req, res, next){
+  res.header('Access-Control-Allow-Origin', null);
+  res.header('Allow', 'GET,OPTIONS,PUT,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.send(200);
+});
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
