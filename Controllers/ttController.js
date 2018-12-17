@@ -9,6 +9,8 @@ var ttController = function(Tarantula) {
     } else {
       console.log(tarantula)
       tarantula._links.self.href = "http://cmgtdani.tk/api/tarantulas/" + tarantula._id
+      tarantula._links.collection.href = "http://cmgtdani.tk/api/tarantulas"
+
       tarantula.save();
       res.status(201);
       res.send(tarantula);
@@ -23,7 +25,7 @@ var ttController = function(Tarantula) {
     }
     
     Tarantula.find(query, function(err, tarantulas) {
-      var returnTarantulas = [];
+
    
       console.log('show collection');
       if (err) res.status(500).send(err)
