@@ -29,12 +29,8 @@ var routes = function(Tarantula){
  ttRouter.route('/:tarantulaId')
   .get(function (req,res) {
     
-  var returnTarantula = req.tarantula.toJSON();
-  
-  returnTarantula.links = {};
-  var newLink =  "http://" + req.headers.host + "/api/tarantulas/?habitat=" + returnTarantula.habitat; 
-  returnTarantula.links.FilterByThisHabitat = newLink.replace(' ','%20');
-  res.json(req.returnTarantula);
+
+  res.json(req.tarantula);
 
 })
 

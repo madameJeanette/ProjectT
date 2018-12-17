@@ -31,6 +31,11 @@ app.use(bodyParser.json());
 
 ttRouter = require('./Routes/ttRoutes')(Tarantula);
 
+app.use(function(req,res,next) {
+  if  (req.accepts('json')){next();
+    return} 
+    res.sendStatus(404);
+})
 app.use('/api/tarantulas', ttRouter);
 
 app.get('/api', function(req, res, next) {

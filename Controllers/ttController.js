@@ -22,7 +22,7 @@ var ttController = function(Tarantula) {
     
     Tarantula.find(query, function(err, tarantulas) {
       var returnTarantulas = [];
-      
+   
       console.log('show collection');
       if (err) res.status(500).send(err)
       else {
@@ -34,7 +34,34 @@ var ttController = function(Tarantula) {
         "http://" + req.headers.host + "/api/tarantulas/" + newTarantula._id;
         returnTarantulas.push(newTarantula);
        });
-      res.json(returnTarantulas);
+       var items = {
+        items: returnTarantulas,
+        _links:{self:{href:"http://cmgtdani.tk/api/tarantulas/"}
+      },
+      pagination: {
+        currentPage: 10,
+        totalPages: 10,
+        totalItems: 10,
+        _links: {    
+          first: {
+          page: 1,
+          href: "http://amycmgt.tk/projects/?start=1&limit=0"
+      },
+      last: {
+          "page": null,
+          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+      },
+      "previous": {
+          "page": 10000,
+          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+      },
+      "next": {
+          "page": null,
+          "href": "http://amycmgt.tk/projects/?start=NaN&limit=NaN"
+      }}
+
+      }};
+      res.json(items);
     }})}
     
   
